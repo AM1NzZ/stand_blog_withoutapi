@@ -171,7 +171,9 @@
                                         <img src="{{ article.postimage.url }}" alt=""/>
                                     </div>
                                     <div class="down-content">
-                                        <span>{{ article.category.first.title }}</span>
+                                        {% for cat in article.category.all %}
+                                        <span style="background-color: #fd7e14 ; color: white ; padding:2px;  ">{{ cat.title }}</span>
+                                        {% endfor %}
                                         <a href="{% url 'post_detail' article.title %}"
                                         ><h4>{{ article.title }}</h4></a
                                         >
@@ -180,16 +182,9 @@
                                             <li><a href="#">{{ article.created_at }}</a></li>
                                             <li><a href="#">12 Comments</a></li>
                                         </ul>
-                                        <p>
-                                            {{ article.body|safe }}
-                                            <a
-                                                    rel="nofollow"
-                                                    href="https://templatemo.com/contact"
-                                                    target="_parent"
-                                            >Contact TemplateMo</a
-                                            >
-                                            for more info. Thank you.
-                                        </p>
+                                        <div>{{ article.body|safe }}
+                                            <a rel="nofollow" href="https://templatemo.com/contact" target="_parent">Contact TemplateMo</a>
+                                            for more info. Thank you.</div>
                                         <div class="post-options">
                                             <div class="row">
                                                 <div class="col-6">
