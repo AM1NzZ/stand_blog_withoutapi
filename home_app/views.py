@@ -1,4 +1,4 @@
-from django.shortcuts import render , get_object_or_404
+from django.shortcuts import render , get_object_or_404 ,redirect
 from post_app.models import Article, Category
 
 
