@@ -23,6 +23,4 @@ def register_user(request):
         user=User.objects.create(username=username , password = password1 , email=email)
         login(request, user)
         return redirect('/')
-
-
     return render(request,'register_app/register.html')
