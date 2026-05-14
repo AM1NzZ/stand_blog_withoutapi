@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{ category }}
+{% endblock %}
+ {% block content %}
+    <div class="container">
+      {% for article in articles %}
+      	<div class="art-box">
+        <img src="{{ article.image.url }}" alt="" class="art-img" />
+        <div class="art-detail">
+          <div class="art-title" style="display: flex">
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.author }}</p>
+          </div>
+          <p class="art-body">
+            {{ article.body|safe|truncatewords:30 }}
+          </p>
+          <div class="btn-box">
+            <button class="btn" type="button" value="">Read More</button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- <img class="clip" src="blog-thumb-01.jpg" alt="" /> -->
+
+
+
+{% endblock %}

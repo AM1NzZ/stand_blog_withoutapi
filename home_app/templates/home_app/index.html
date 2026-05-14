@@ -159,7 +159,7 @@
                                 <div class="content">
                                     <ul>
                                         {% for foo in categories %}
-                                            <li><a href="#">- {{ foo.title }}</a></li>
+                                            <li><a href="{% url 'sort_by_category' foo.title %}">- {{ foo.title }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </div>

@@ -1,9 +1,10 @@
 from contextlib import nullcontext
 from email.policy import default
-
+from  django.urls import reverse
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from django.utils.text import  slugify
 from django.utils import timezone
 
 
@@ -18,16 +19,23 @@ from django.utils import timezone
 class Category(models.Model):
     title = models.CharField(max_length=100,help_text='Enter your title')
     created_at = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(null=True, blank=True, unique=True)
 
     class Meta:
         verbose_name_plural = 'Categories'
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Category, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.title
+
 
 class ArticleManager(models.Manager):
     def published(self):
         return self.filter(published=True)
+
 
 class Article(models.Model):
     CHOICES = (
@@ -44,9 +52,16 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True)
-    published = models.BooleanField(default=True)
+    published = models.BooleanField(default=False)
     myfile = models.FileField(upload_to = 'files/article',null=True,blank=True)
+    slug = models.SlugField(null=True, blank=True, unique=True)
     objects = ArticleManager()
+
+    # def get_absolute_url(self):
+    #     return reverse('post_detail',kwargs={'title':self.title})
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Article, self).save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.author} - {self.title} '
