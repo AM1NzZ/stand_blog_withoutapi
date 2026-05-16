@@ -17,3 +17,6 @@ def sort_article_by_category(request , category):
     articles = Article.objects.filter(category__title = category)
     print(articles)
     return render(request,"post_app/category.html" ,{'articles':articles,"category":category})
+def blog_entries(request):
+    articles = Article.objects.all()
+    return render(request,'post_app/blog-entries.html',{'articles':articles})

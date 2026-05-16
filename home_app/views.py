@@ -6,4 +6,5 @@ def index_page(request):
     articles = Article.objects.all()
     # articles = Article.objects.published()
     categories=Category.objects.all()
-    return render (request,'home_app/index.html',{'articles':articles , 'categories':categories})
+    recent_articles = Article.objects.order_by('-updated_at')[:3]
+    return render (request,'home_app/index.html',{'articles':articles , 'categories':categories , 'recent_articles':recent_articles})

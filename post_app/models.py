@@ -24,6 +24,7 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
 
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Category, self).save(*args, **kwargs)
@@ -49,6 +50,7 @@ class Article(models.Model):
     body = RichTextField()
     image = models.ImageField(upload_to = 'images/article')
     postimage = models.ImageField(upload_to='images/article',null=True,blank=True)
+    thumb_image = models.ImageField(upload_to='images/article',null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.BooleanField(default=True)

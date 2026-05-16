@@ -3747,6 +3747,7 @@ input[type="submit"].btn-block {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  align-items: center;
 }
 .navbar-nav .nav-link {
   padding-right: 0;
@@ -3902,6 +3903,7 @@ input[type="submit"].btn-block {
   .navbar-expand-lg > .container-fluid {
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
+    align-items: baseline;
   }
   .navbar-expand-lg .navbar-collapse {
     display: -ms-flexbox !important;

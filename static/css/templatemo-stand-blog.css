@@ -234,12 +234,13 @@ header .navbar {
 }
 .navbar .navbar-nav a.nav-link {
   text-transform: capitalize;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #1e1e1e;
   transition: all 0.3s;
+
 }
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .active > .nav-link,
