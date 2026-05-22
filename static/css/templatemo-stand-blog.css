@@ -1090,3 +1090,35 @@ footer p a:hover {
     margin-top: 60px;
   }
 }
+.auth_dialog {
+  position: fixed;
+  display: none;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  border: 1px solid #eee;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  padding: 2rem;
+  z-index: 10000;
+}
+
+.auth_dialog.open {
+  display: block;
+}
+
+.auth_dialog .field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 2rem;
+}
+
+.auth_dialog form button[type="submit"] {
+  width: 100%;
+  padding: 8px;
+}
+
+.auth_dialog > button {
+  margin-bottom: 2rem;
+}
