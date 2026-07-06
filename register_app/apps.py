@@ -5,4 +5,4 @@ class RegisterAppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'register_app'
     verbose_name = 'Register'
-    icon ='fas fa-registered'
+    icon ='fas fa-registered  text-red-500'

@@ -24,8 +24,10 @@ SECRET_KEY = 'django-insecure-4suh(c#k=au$h6t6o)42h+$zbpw5o2gpzdui8rg0l-+^3jx3)_
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = [
+    "https://slicing-resend-enforcer.ngrok-free.dev",
+]
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -43,12 +45,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_cleanup.apps.CleanupConfig',
+    'django_render_partial',
+    'django_social_share',
     # my_app
     'home_app.apps.HomeAppConfig',
     'login_app',
     'register_app',
-    'post_app.apps.PostAppConfig'
-
+    'post_app.apps.PostAppConfig',
+    'social',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +78,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'context_processors.context_processors.recent_article'
+                'context_processors.context_processors.recent_article',
+                'context_processors.context_processors.published_articles',
+                'context_processors.context_processors.published_article',
+                'context_processors.context_processors.social_links',
 
             ],
         },
@@ -139,7 +146,8 @@ DAISY_SETTINGS = {
     'SITE_HEADER': 'Stand Blog',  # Header text displayed in the admin panel
     'INDEX_TITLE': 'Hi, welcome to your dashboard',  # The title for the index page of dashboard
     'SITE_LOGO': '/static/admin/img/stand_blog.png',  # Path to the logo image displayed in the sidebar
-    'EXTRA_STYLES': [],  # List of extra stylesheets to be loaded in base.html (optional)
+    'EXTRA_STYLES': ['/static/admin/css/test.css'],  # List of extra stylesheets to be loaded in base.html (optional)
     'EXTRA_SCRIPTS': [],  # List of extra script URLs to be loaded in base.html (optional)
-    'LOAD_FULL_STYLES': True,  # If True, loads full DaisyUI components in the admin (useful if you have custom template overrides)
-    'SHOW_CHANGELIST_FILTER': False,} # If True, the filter sidebar will open by default on changelist views
+    'LOAD_FULL_STYLES': True,
+    # If True, loads full DaisyUI components in the admin (useful if you have custom template overrides)
+    'SHOW_CHANGELIST_FILTER': False, }  # If True, the filter sidebar will open by default on changelist views

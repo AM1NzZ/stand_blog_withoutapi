@@ -6,4 +6,4 @@ class PostAppConfig(AppConfig):
     verbose_name = 'Post'
     verbose_name_plural = 'Posts'
     name = 'post_app'
-    icon = 'fas fa-blog'
+    icon = 'fas fa-blog text-green-500 hover:animate-spin'

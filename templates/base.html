@@ -1,4 +1,5 @@
 {% load static %}
+{% load render_partial %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,20 +7,12 @@
 {% include 'includes/head_references.html' %}
 
 </head>
-<style>
-    .meta-category .tag {
-        background: #eee;
-        padding: 3px 8px;
-        border-radius: 6px;
-        margin-right: 5px;
-        font-size: 12px;
-    }
-</style>
 <body>
 {% include 'includes/header.html' %}
 {% block content %}
 {% endblock %}
 {% include 'includes/footer.html' %}
+
 {% include 'includes/footer_references.html' %}
 </body>
 </html>

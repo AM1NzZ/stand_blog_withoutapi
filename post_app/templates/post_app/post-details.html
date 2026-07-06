@@ -36,7 +36,7 @@
                     </div>
                     <div class="down-content ">
                       {% for cat in article.category.all %}
-                        <span style="background-color: #fd7e14 ; color: white ; padding:2px;  ">{{ cat.title }}</span>
+                        <span class="category-badge">{{ cat.title }}</span>
                       {% endfor %}
                       <a href="post-details.html"><h4>{{ article.title }}</h4></a>
                       <ul class="post-info">

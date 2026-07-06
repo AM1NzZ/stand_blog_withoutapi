@@ -1,5 +1,8 @@
 {% load static %}
 <meta charset="utf-8"/>
+<meta property="og:title" content="{{ article.title }}">
+<meta property="og:description" content="{{ article.description }}">
+<meta property="og:image" content="{{ article.image.url }}">
     <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -24,3 +27,4 @@
     <link rel="stylesheet" href="{% static 'css/fontawesome.css' %} "/>
     <link rel="stylesheet" href="{% static 'css/templatemo-stand-blog.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/owl.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/modern-theme.css' %}"/>

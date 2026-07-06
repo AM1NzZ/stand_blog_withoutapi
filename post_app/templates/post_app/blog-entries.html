@@ -32,44 +32,62 @@
                 <div class="col-lg-8">
                     <div class="all-blog-posts">
                         <div class="row">
-                            {% for article in articles %}
-                                <div class="col-lg-6">
-                                    <div class="blog-post">
-                                        <div class="blog-thumb">
-                                            <img src="{{ article.thumb_image.url }}" alt="">
-                                        </div>
-                                        <div class="down-content">
-                                            <span>{{ article.category.first }}</span>
-                                            <a href="{% url 'post_detail' article.title %}"><h4>{{ article.title }}</h4>
-                                            </a>
-                                            <ul class="post-info">
-                                                <li><a href="#">{{ article.author }}</a></li>
-                                                <li><a href="#">{{ article.updated_at }}</a></li>
-                                                <li><a href="#">12 Comments</a></li>
-                                            </ul>
-                                            {{ article.body|safe|truncatewords_html:30 }}
-                                            <div class="post-options">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <ul class="post-tags">
-                                                            <li><i class="fa fa-tags"></i></li>
-                                                            <li><a href="#">Best Templates</a>,</li>
-                                                            <li><a href="#">TemplateMo</a></li>
-                                                        </ul>
+                            {% if articles %}
+                                {% for article in articles %}
+                                    <div class="col-lg-6">
+                                        <div class="blog-post">
+                                            <div class="blog-thumb">
+                                                <img src="{{ article.thumb_image.url }}" alt="">
+                                            </div>
+                                            <div class="down-content">
+                                                <span>{{ article.category.first }}</span>
+                                                <a href="{% url 'post_detail' article.title %}">
+                                                    <h4>{{ article.title }}</h4>
+                                                </a>
+                                                <ul class="post-info">
+                                                    <li><a href="#">{{ article.author }}</a></li>
+                                                    <li><a href="#">{{ article.updated_at }}</a></li>
+                                                    <li><a href="#">12 Comments</a></li>
+                                                </ul>
+                                                {{ article.body|safe|truncatewords_html:30 }}
+                                                <div class="post-options">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <ul class="post-tags">
+                                                                <li><i class="fa fa-tags"></i></li>
+                                                                <li><a href="#">Best Templates</a>,</li>
+                                                                <li><a href="#">TemplateMo</a></li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                            {% if not articles %}
+                                <p class="article_not_found">No articles found in category: <span
+                                        class="ping"><b>{{ category }}</b></span></p>
+                            {% endif %}
                             <div class="col-lg-12">
-                                <ul class="page-numbers">
-                                    <li><a href="#">1</a></li>
-                                    <li class="active"><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-                                </ul>
+                                {% if articles.has_other_pages %}
+                                    <ul class="page-numbers">
+                                        {% if articles.has_previous %}
+                                            <li><a href="?page={{articles.previous_page_number }}"><i class="fa fa-angle-double-left"></i></a></li>
+                                        {% endif %}
+                                        {% for page in articles.paginator.page_range %}
+                                            {% if articles.number == page %}
+                                                <li class = 'active'><a href="?page={{ page }}">{{ page }}</a></li>
+                                                {% else %}
+                                                <li><a href="?page={{ page }}">{{ page }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if articles.has_next %}
+                                            <li><a href="?page={{articles.next_page_number }}"><i class="fa fa-angle-double-right"></i></a></li>
+                                        {% endif %}
+                                    </ul>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

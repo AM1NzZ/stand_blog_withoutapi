@@ -42,7 +42,7 @@
                                 <a class="nav-link" href="">{{ request.user.username }}</a>
                             {% endif %}
                         {% else %}
-                            <div style="border: 1px solid black" class="d-flex box box-danger">
+                            <div class="d-flex auth-box">
                                 <a class="nav-link" href="{% url 'login' %}">Login</a>
                                 <a class="nav-link" href="{% url 'registerUser' %}">Register</a>
                             </div>
@@ -50,7 +50,7 @@
                     </li>
                     <li>
                         {% if request.user.is_authenticated %}
-                            <a style="color: rgb(255, 255, 255)" class="btn-danger btn"
+                            <a class="btn btn-logout"
                                href="{% url 'logout' %}">logout</a>
                         {% endif %}
                     </li>

@@ -39,11 +39,6 @@ class ArticleManager(models.Manager):
 
 
 class Article(models.Model):
-    CHOICES = (
-        ('Hola','Hola'),
-        ('NoaH','NoaH'),
-        ('Casa','Casa'),
-    )
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     title = models.CharField(max_length=100,help_text='Enter your title')
     category = models.ManyToManyField(Category,related_name='articles')
