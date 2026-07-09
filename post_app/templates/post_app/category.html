@@ -6,7 +6,7 @@
  {% block content %}
     <div class="container category-page">
       {% for article in articles %}
-      	<div class="art-box">
+      	<div class="art-box animate-on-scroll">
         <img src="{{ article.image.url }}" alt="" class="art-img" />
         <div class="art-detail">
           <div class="art-title" style="display: flex">
@@ -17,7 +17,7 @@
             {{ article.body|safe|truncatewords:30 }}
           </p>
           <div class="btn-box">
-            <button class="btn" type="button" value="">Read More</button>
+            <button class="btn auth-btn" type="button" value="">Read More</button>
           </div>
         </div>
       </div>

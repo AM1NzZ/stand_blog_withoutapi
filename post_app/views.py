@@ -1,22 +1,29 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
-from post_app.models import Article, Category
+from post_app.models import Article, Category, Comment
 
 from django.views.generic.base import View
 from django.views.generic import ListView
 
 # Create your views here.
 def post_detail(request, title):
-    # article = Article.objects.published(title = title)
     article = get_object_or_404(Article, title=title)
-
+    comments = Comment.objects.filter(article=article,parent=None)
     category = Category.objects.all()
+    
+    if request.method == "POST":
+        Comment.objects.create(
+            article=article,
+            user=request.user,
+            body=request.POST.get("message"),
+            parent_id = request.POST.get("parent_id")
+        )
+        return redirect(request.path)
+    
     if request.user.is_authenticated:
-        return render(request, 'post_app/post-details.html', {'article': article, 'category': category})
+        return render(request, 'post_app/post-details.html', {'article': article, 'category': category, 'comments': comments})
     elif not request.user.is_authenticated:
         return render(request, 'home_app/login_required.html')
-    return redirect('login')
-
 
 def sort_article_by_category(request, category):
     articles = Article.objects.published().filter(category__title=category)
@@ -36,7 +43,6 @@ def blog_entries(request):
     object_list = paginator.get_page(request.GET.get('page'))
     return render(request, 'post_app/blog-entries.html', {'articles': object_list})
 
-
 # class TestViewBase(View):
 #     name = "amin"
 #     def get(self,request):
@@ -52,3 +58,4 @@ class ListView(View):
 class ArticleList(ListView):
     queryset = Article.objects.all()
     template_name = 'post_app/blog-entries.html'
+

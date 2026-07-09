@@ -1,47 +1,80 @@
-{%load static%}
+{% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registration Page</title>
-    <link rel="stylesheet" href="{% static 'css/modern-theme.css' %}">
-  </head>
-  <body class="auth-page">
-    <div class="auth-card">
-      <h2>Register</h2>
-      <form action="/register" method="post">
-        {% csrf_token %}
-          {% if errors %}
-              {% for item in errors %}
-                  <p class="badge badge-danger mt-3 ">{{ item }}</p>
-              {% endfor %}
-          {% endif %}
+    <link rel="stylesheet" href="{% static 'css/modern-theme.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/animations.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}" />
+</head>
+<body class="auth-page">
+    <div class="auth-split">
+        <div class="auth-panel auth-panel-brand">
+            <div class="auth-orbs">
+                <span class="orb orb-1"></span>
+                <span class="orb orb-2"></span>
+                <span class="orb orb-3"></span>
+            </div>
+            <div class="auth-brand-content">
+                <img src="{% static 'images/blogger.png' %}" alt="">
+                <h1>Join Us<em>.</em></h1>
+                <p>Create an account and start sharing your stories with the world.</p>
+                <ul class="auth-brand-features">
+                    <li><i class="fa fa-star"></i> Free to join</li>
+                    <li><i class="fa fa-shield"></i> Secure &amp; private</li>
+                    <li><i class="fa fa-rocket"></i> Get started in seconds</li>
+                </ul>
+            </div>
+        </div>
+        <div class="auth-panel auth-panel-form">
+            <div class="auth-card-v2">
+                <div class="auth-card-header">
+                    <h2>Create account</h2>
+                    <p>Fill in your details to get started</p>
+                </div>
+                <form action="/register" method="post">
+                    {% csrf_token %}
+                    {% if errors %}
+                        {% for item in errors %}
+                            <p class="auth-error">{{ item }}</p>
+                        {% endfor %}
+                    {% endif %}
 
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" required />
+                    <div class="auth-input-group">
+                        <label for="username">Username</label>
+                        <div class="auth-input-wrap">
+                            <input type="text" id="username" name="username" required placeholder="Choose a username" />
+                            <i class="fa fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="email">Email</label>
+                        <div class="auth-input-wrap">
+                            <input type="email" id="email" name="email" required placeholder="example@gmail.com" />
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="password1">Password</label>
+                        <div class="auth-input-wrap">
+                            <input type="password" id="password1" name="password1" required placeholder="Create a password" />
+                            <i class="fa fa-lock"></i>
+                        </div>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="password2">Confirm Password</label>
+                        <div class="auth-input-wrap">
+                            <input type="password" id="password2" name="password2" required placeholder="Repeat your password" />
+                            <i class="fa fa-lock"></i>
+                        </div>
+                    </div>
+                    <button type="submit" class="auth-btn">Create Account</button>
+                </form>
+                <p class="auth-switch">Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            placeholder="example@gmail.com"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password1">Password</label>
-          <input type="password" id="password1" name="password1" required />
-        </div>
-        <div class="form-group">
-          <label for="password2">Confirm Password</label>
-          <input type="password" id="password2" name="password2" required />
-        </div>
-        <button type="submit">Register</button>
-      </form>
     </div>
-  </body>
+</body>
 </html>

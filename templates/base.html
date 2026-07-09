@@ -7,11 +7,22 @@
 {% include 'includes/head_references.html' %}
 
 </head>
-<body>
+<body class="site-page">
+<div class="site-bg" aria-hidden="true">
+    <div class="auth-orbs">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="orb orb-3"></span>
+    </div>
+</div>
+<div class="site-content">
 {% include 'includes/header.html' %}
+<main class="site-main">
 {% block content %}
 {% endblock %}
+</main>
 {% include 'includes/footer.html' %}
+</div>
 
 {% include 'includes/footer_references.html' %}
 </body>

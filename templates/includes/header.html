@@ -1,5 +1,5 @@
 {% load static %}
-<header class="">
+<header class="animate-header-in">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home_page' %}"><h2>Stand Blog<em>.</em></h2></a>
@@ -44,7 +44,7 @@
                         {% else %}
                             <div class="d-flex auth-box">
                                 <a class="nav-link" href="{% url 'login' %}">Login</a>
-                                <a class="nav-link" href="{% url 'registerUser' %}">Register</a>
+                                <a class="nav-link nav-link-register" href="{% url 'registerUser' %}">Register</a>
                             </div>
                         {% endif %}
                     </li>

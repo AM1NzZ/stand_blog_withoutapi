@@ -6,12 +6,34 @@
 <title>Login Required</title>
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/modern-theme.css' %}">
+<link rel="stylesheet" href="{% static 'css/animations.css' %}">
+<link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
 </head>
 <body class="auth-page">
 
-<div class="auth-card">
-  <h2>You must be logged in to view articles.</h2>
-  <a href="{% url 'login' %}" class="auth-link">Login</a>
+<div class="auth-split">
+    <div class="auth-panel auth-panel-brand">
+        <div class="auth-orbs">
+            <span class="orb orb-1"></span>
+            <span class="orb orb-2"></span>
+            <span class="orb orb-3"></span>
+        </div>
+        <div class="auth-brand-content">
+            <img src="{% static 'images/blogger.png' %}" alt="">
+            <h1>Access Required<em>.</em></h1>
+            <p>Please sign in to read our articles.</p>
+        </div>
+    </div>
+    <div class="auth-panel auth-panel-form">
+        <div class="auth-card-v2">
+            <div class="auth-card-header">
+                <h2>Login Required</h2>
+                <p>You must be logged in to view articles.</p>
+            </div>
+            <a href="{% url 'login' %}" class="auth-btn">Sign In</a>
+            <p class="auth-switch">Don't have an account? <a href="{% url 'registerUser' %}">Create one</a></p>
+        </div>
+    </div>
 </div>
 
 </body>
