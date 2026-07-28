@@ -82,6 +82,7 @@ TEMPLATES = [
                 'context_processors.context_processors.published_articles',
                 'context_processors.context_processors.published_article',
                 'context_processors.context_processors.social_links',
+                'context_processors.context_processors.user_profile',
 
             ],
         },

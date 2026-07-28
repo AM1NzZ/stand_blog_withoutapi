@@ -18,7 +18,6 @@
 </div>
 
 <!-- Banner Ends Here -->
-
 <section class="blog-posts grid-system">
   <div class="container">
     <div class="row">
@@ -72,14 +71,11 @@
                     {% for comment in comments %}
                     <li>
                       <div class="author-thumb">
-                        <img
-                          src="{% static 'images/comment-author-01.jpg' %}"
-                          alt=""
-                        />
+                        <img src="{{comment.user.profile.image.url}}" alt="" />
                       </div>
                       <div class="right-content">
                         <h4>
-                          {{comment.user.username}}<span
+                          {{comment.user.get_full_name}}<span
                             >{{comment.created_at}}</span
                           >
                         </h4>
@@ -95,14 +91,11 @@
                     {% for reply in comment.replies.all %}
                     <li class="replied">
                       <div class="author-thumb">
-                        <img
-                          src="{% static 'images/comment-author-02.jpg' %}"
-                          alt=""
-                        />
+                        <img src="{{reply.user.profile.image.url}}" alt="" />
                       </div>
                       <div class="right-content">
                         <h4>
-                          {{reply.user.first_name}}<span
+                          {{reply.user.get_full_name}}<span
                             >{{reply.created_at}}</span
                           >
                         </h4>

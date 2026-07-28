@@ -1,5 +1,6 @@
 from post_app.models import *
 from social.models import Social
+from register_app.models import Profile
 from django.core.paginator import Paginator
 
 
@@ -23,3 +24,7 @@ def published_article(request):
 def social_links(request):
     social_link = Social.objects.all()
     return {'social_links': social_link}
+
+def user_profile(request):
+    profile = Profile.objects.all()
+    return{'profile':profile}

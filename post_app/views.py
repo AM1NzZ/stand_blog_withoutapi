@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from post_app.models import Article, Category, Comment
 
 from django.views.generic.base import View
-from django.views.generic import ListView
+from django.views.generic import ListView 
 
 # Create your views here.
 def post_detail(request, title):
