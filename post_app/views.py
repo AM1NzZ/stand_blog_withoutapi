@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from post_app.models import Article, Category, Comment
-
+from django.db.models import Q
 from django.views.generic.base import View
 from django.views.generic import ListView 
 
@@ -48,14 +48,22 @@ def blog_entries(request):
 #     def get(self,request):
 #         return HttpResponse(self.name)
 
-class ListView(View):
-    queryset = None
-    template_name = None
-    def get(self, request):
-        return render(request, self.template_name, {"object_list": self.queryset})
+# class ListView(View):
+#     queryset = None
+#     template_name = None
+#     def get(self, request):
+#         return render(request, self.template_name, {"object_list": self.queryset})
 
 
 class ArticleList(ListView):
     queryset = Article.objects.all()
     template_name = 'post_app/blog-entries.html'
 
+def search(request):
+    q = request.GET.get('q','')
+    keyword = q.split()
+    query = Q()
+    for word in keyword:
+        query |= Q(title__icontains=word) | Q(body__icontains=word)
+    article = Article.objects.filter(query).distinct()
+    return render(request, 'post_app/blog-entries.html', {'articles': article})
