@@ -26,5 +26,6 @@ urlpatterns = [
     path('', include('login_app.urls')),
     path('register/', include('register_app.urls')),
     path('', include('post_app.urls')),
+    path('', include('social.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

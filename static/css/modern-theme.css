@@ -26,7 +26,11 @@
     100% { background-position: 0% 50%; }
 }
 
+.form-input{
+    border-radius: 15px;
+}
 * {
+    color: #00B0E8;
     border-radius: 0;
 }
 
